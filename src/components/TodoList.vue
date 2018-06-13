@@ -1,12 +1,19 @@
 <template>
   <div>
-    <p>Completed tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
-    <p>Pending tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
+    <todos-overview v-bind:todos="todos"></todos-overview>
+    <todo v-for="todo in todos" v-bind:todo="todo" :key="todo.title"></todo>
   </div>
 </template>
 
 <script>
+import Todo from './Todo'
+import TodosOverview from './TodosOverview'
+
 export default {
-  props: ['todos']
+  props: ['todos'],
+  components: {
+    Todo,
+    TodosOverview
+  }
 }
 </script>
